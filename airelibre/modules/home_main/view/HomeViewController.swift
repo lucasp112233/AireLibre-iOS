@@ -10,7 +10,8 @@ import GoogleMaps
 import MaterialComponents.MaterialButtons
 
 class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
-
+    var datossensor :[SensorResponse] = []
+    @IBOutlet weak var tablasensor: UITableView!
     @IBOutlet weak var btnInfoAQI: UIButton!
     @IBOutlet weak var tvTitle: UILabel!
     @IBOutlet weak var viewMap: UIView!
@@ -35,13 +36,28 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tablasensor.register(UINib (nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "celda")
         manager.delegate = self
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
+        tablasensor.delegate = self
+        tablasensor.dataSource = self
+
         createMap()
         callService()
         configureUI()
         gestureDownInfoMarker()
+        mapView.settings.myLocationButton = true
+        mapView.isMyLocationEnabled = true
+        mapView.settings.myLocationButton = true
+
+        mapView.padding = UIEdgeInsets(top: 0, left: 0, bottom: 650, right: 10)
+        
+
+
+
+
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +66,18 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
         themeApp()
         showSensorFavorite = true
     }
+
+    @IBAction func opentablesensor(_ sender: Any) {
+        self.vistatabasensor.isHidden = false
+
+    }
+    @IBOutlet weak var vistatabasensor: UIView!
+    
+    @IBAction func buttoncloser(_ sender: Any) {
+        self.vistatabasensor.isHidden = true
+        
+    }
+    
     
     @IBAction func clickSensorInfoClose(_ sender: Any) {
         self.viewInfoSensor?.isHidden = true
@@ -161,6 +189,11 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
                 marker.snippet = self.qualityScaleText(index: sensor.quality.index)
                 marker.map = self.mapView
                 marker.icon = self.createMarkerWithText(sensor.quality.index)
+                
+            }
+            self.datossensor = list
+            DispatchQueue.main.async {
+                self.tablasensor.reloadData()
             }
         }
     }
@@ -261,4 +294,22 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
             self.viewInfoSensor?.isHidden = true
         }
     }
+}
+extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let celda = tablasensor.dequeueReusableCell(withIdentifier: "celda", for: indexPath) as! TableViewCell
+        celda.estadoaqi.text = String(datossensor[indexPath.row].quality.index)
+        celda.descripsion.text = datossensor[indexPath.row].description
+        celda.estado.text = self.emojiScale(index: datossensor[indexPath.row].quality.index )
+
+
+
+        
+        return celda
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sensorList.count
+    
+}
 }

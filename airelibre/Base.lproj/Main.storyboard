@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nUS-tg-opI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nUS-tg-opI">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -305,7 +304,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A|L" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4A-7y-MlN">
-                                <rect key="frame" x="347" y="68" width="42" height="23"/>
+                                <rect key="frame" x="348.5" y="68" width="40.5" height="23"/>
                                 <fontDescription key="fontDescription" name="DisketMono-Bold" family="Disket Mono" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -426,17 +425,96 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XdF-a8-gLh">
+                                <rect key="frame" x="165" y="44" width="84" height="31"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1p-Ea-H4U">
+                                        <rect key="frame" x="0.0" y="0.0" width="84" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="sensores">
+                                            <color key="baseBackgroundColor" red="0.16492953499999999" green="0.46770316360000003" blue="0.29848598459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="opentablesensor:" destination="2FE-2r-N33" eventType="touchUpInside" id="IYA-6T-TL1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tOI-Fm-CiH">
+                                <rect key="frame" x="20" y="298" width="374" height="515"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="upq-MD-aSM">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="515"/>
+                                        <color key="backgroundColor" red="0.16492953499999999" green="0.46770316360000003" blue="0.29848598459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="separatorColor" red="0.16492953499999999" green="0.46770316360000003" blue="0.29848598459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="sectionIndexBackgroundColor" red="0.16492953496871701" green="0.46770316360000003" blue="0.29848598459621223" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="sectionIndexTrackingBackgroundColor" red="0.16492953499999999" green="0.46770316360000003" blue="0.29848598459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <button key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="8gY-tc-2sJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="filled" title="x">
+                                                <color key="baseBackgroundColor" red="0.16492953499999999" green="0.46770316360000003" blue="0.29848598459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="buttoncloser:" destination="2FE-2r-N33" eventType="touchUpInside" id="5aJ-w5-Fp1"/>
+                                            </connections>
+                                        </button>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Me5-Fp-EBN">
+                                                <rect key="frame" x="0.0" y="75.5" width="374" height="43.5"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Me5-Fp-EBN" id="TxJ-SV-rBj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                                <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusTop">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusTop">
+                                                <real key="value" value="28"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.16492953499999999" green="0.46770316360000003" blue="0.29848598459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="upq-MD-aSM" firstAttribute="leading" secondItem="tOI-Fm-CiH" secondAttribute="leading" id="2l2-ZS-lYX"/>
+                                    <constraint firstAttribute="height" constant="515" id="Ruw-aT-Yxc"/>
+                                    <constraint firstAttribute="bottom" secondItem="upq-MD-aSM" secondAttribute="bottom" id="X5w-yv-qkS"/>
+                                    <constraint firstItem="upq-MD-aSM" firstAttribute="top" secondItem="tOI-Fm-CiH" secondAttribute="top" id="fQt-JY-gG6"/>
+                                    <constraint firstAttribute="trailing" secondItem="upq-MD-aSM" secondAttribute="trailing" id="rru-vB-PDW"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusTop">
+                                        <real key="value" value="34"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="R9t-mB-e8n"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="XdF-a8-gLh" firstAttribute="centerX" secondItem="tOI-Fm-CiH" secondAttribute="centerX" id="3pz-jn-aSu"/>
                             <constraint firstItem="BT1-Ud-Wnn" firstAttribute="leading" secondItem="R9t-mB-e8n" secondAttribute="leading" constant="15" id="4tk-NJ-hXr"/>
+                            <constraint firstItem="XdF-a8-gLh" firstAttribute="leading" secondItem="R9t-mB-e8n" secondAttribute="leading" constant="165" id="Ep2-c5-Oao"/>
                             <constraint firstItem="R9t-mB-e8n" firstAttribute="trailing" secondItem="BT1-Ud-Wnn" secondAttribute="trailing" constant="15" id="Lv3-B1-pEu"/>
+                            <constraint firstItem="T4A-7y-MlN" firstAttribute="leading" secondItem="XdF-a8-gLh" secondAttribute="trailing" constant="99.5" id="Mt5-XE-eV0"/>
                             <constraint firstItem="R9t-mB-e8n" firstAttribute="bottom" secondItem="BT1-Ud-Wnn" secondAttribute="bottom" id="NF7-lZ-wVs"/>
+                            <constraint firstItem="XdF-a8-gLh" firstAttribute="top" secondItem="R9t-mB-e8n" secondAttribute="top" id="ZdD-h9-S2p"/>
+                            <constraint firstItem="R9t-mB-e8n" firstAttribute="trailing" secondItem="tOI-Fm-CiH" secondAttribute="trailing" constant="20" id="Zdl-vB-cPv"/>
                             <constraint firstItem="T4A-7y-MlN" firstAttribute="top" secondItem="R9t-mB-e8n" secondAttribute="top" constant="24" id="fIR-vu-fUF"/>
                             <constraint firstItem="OKi-9w-Ch5" firstAttribute="top" secondItem="6Pj-uy-mXe" secondAttribute="top" id="ff6-PR-Zse"/>
                             <constraint firstItem="OKi-9w-Ch5" firstAttribute="leading" secondItem="R9t-mB-e8n" secondAttribute="leading" id="if8-ga-T4x"/>
+                            <constraint firstItem="tOI-Fm-CiH" firstAttribute="leading" secondItem="R9t-mB-e8n" secondAttribute="leading" constant="20" id="kZn-Wv-qMg"/>
                             <constraint firstItem="R9t-mB-e8n" firstAttribute="trailing" secondItem="T4A-7y-MlN" secondAttribute="trailing" constant="25" id="mZE-Ez-cxz"/>
+                            <constraint firstItem="R9t-mB-e8n" firstAttribute="bottom" secondItem="tOI-Fm-CiH" secondAttribute="bottom" id="sTb-wh-zah"/>
                             <constraint firstItem="OKi-9w-Ch5" firstAttribute="bottom" secondItem="R9t-mB-e8n" secondAttribute="bottom" id="ufo-dJ-fZ1"/>
                             <constraint firstItem="OKi-9w-Ch5" firstAttribute="trailing" secondItem="R9t-mB-e8n" secondAttribute="trailing" id="wD5-bD-oGH"/>
                         </constraints>
@@ -448,6 +526,7 @@
                     <connections>
                         <outlet property="btnCloseInfoSensor" destination="3lC-h6-olu" id="vjo-Bf-TiJ"/>
                         <outlet property="btnInfoAQI" destination="b6k-ya-KYR" id="fYr-E1-D0P"/>
+                        <outlet property="tablasensor" destination="upq-MD-aSM" id="MB2-sX-7t8"/>
                         <outlet property="tvInfoDescription" destination="TPY-Sx-QEM" id="WnV-WC-7rU"/>
                         <outlet property="tvInfoEmoji" destination="68P-KA-4HK" id="rOu-YQ-z74"/>
                         <outlet property="tvInfoScale" destination="uuW-qO-jKS" id="DJ7-d1-l2r"/>
@@ -455,6 +534,7 @@
                         <outlet property="tvTitle" destination="T4A-7y-MlN" id="g7k-mp-17p"/>
                         <outlet property="viewInfoSensor" destination="BT1-Ud-Wnn" id="cBe-cK-OKO"/>
                         <outlet property="viewMap" destination="OKi-9w-Ch5" id="wQI-NB-DJo"/>
+                        <outlet property="vistatabasensor" destination="tOI-Fm-CiH" id="OCY-XZ-3eE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yw3-5A-Zix" sceneMemberID="firstResponder"/>

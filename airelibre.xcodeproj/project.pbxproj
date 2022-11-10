@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37485D27291AD42000F8D4BA /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37485D25291AD42000F8D4BA /* TableViewCell.swift */; };
+		37485D28291AD42000F8D4BA /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37485D26291AD42000F8D4BA /* TableViewCell.xib */; };
 		51D40AAAF28037942E3E77DA /* Pods_airelibre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9992FDE15AD38C91E09384C /* Pods_airelibre.framework */; };
 		52669A4B28E7CC40009DA821 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52669A4A28E7CC40009DA821 /* ConfigViewController.swift */; };
 		52669A5328E7D42C009DA821 /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 52669A5228E7D42C009DA821 /* style.json */; };
@@ -30,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		37485D25291AD42000F8D4BA /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		37485D26291AD42000F8D4BA /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		4187F73C8D25353464A77A27 /* Pods-airelibre.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-airelibre.release.xcconfig"; path = "Target Support Files/Pods-airelibre/Pods-airelibre.release.xcconfig"; sourceTree = "<group>"; };
 		52669A4A28E7CC40009DA821 /* ConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigViewController.swift; path = config/ConfigViewController.swift; sourceTree = "<group>"; };
 		52669A4E28E7CD4E009DA821 /* disket_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = disket_regular.ttf; sourceTree = "<group>"; };
@@ -170,6 +174,8 @@
 				52C636E328028C99005CDBD4 /* SceneDelegate.swift */,
 				52C636E728028C99005CDBD4 /* Main.storyboard */,
 				52C636EA28028C9C005CDBD4 /* Assets.xcassets */,
+				37485D25291AD42000F8D4BA /* TableViewCell.swift */,
+				37485D26291AD42000F8D4BA /* TableViewCell.xib */,
 				52C636EC28028C9C005CDBD4 /* LaunchScreen.storyboard */,
 				527FC41928D3ED7A001A5FF6 /* GoogleService-Info.plist */,
 				52C636EF28028C9C005CDBD4 /* Info.plist */,
@@ -289,6 +295,7 @@
 			files = (
 				52C636EE28028C9C005CDBD4 /* LaunchScreen.storyboard in Resources */,
 				52C636EB28028C9C005CDBD4 /* Assets.xcassets in Resources */,
+				37485D28291AD42000F8D4BA /* TableViewCell.xib in Resources */,
 				52C636E928028C99005CDBD4 /* Main.storyboard in Resources */,
 				52669A5328E7D42C009DA821 /* style.json in Resources */,
 				527FC40E28D3E9BE001A5FF6 /* InfoAQITableViewCell.xib in Resources */,
@@ -367,6 +374,7 @@
 				527FC40C28D3E9BE001A5FF6 /* InfoAQITableViewCell.swift in Sources */,
 				52C636E228028C99005CDBD4 /* AppDelegate.swift in Sources */,
 				52A9782E28063A2E006A877D /* HomeViewModel.swift in Sources */,
+				37485D27291AD42000F8D4BA /* TableViewCell.swift in Sources */,
 				52669A4B28E7CC40009DA821 /* ConfigViewController.swift in Sources */,
 				52C636FA28029A3D005CDBD4 /* BaseTabBarController.swift in Sources */,
 				527FC40D28D3E9BE001A5FF6 /* extensions.swift in Sources */,
@@ -524,17 +532,19 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LMVK4FRCB7;
+				DEVELOPMENT_TEAM = 9WBU2MND27;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = airelibre/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = AireLibre;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -556,17 +566,19 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LMVK4FRCB7;
+				DEVELOPMENT_TEAM = 9WBU2MND27;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = airelibre/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = AireLibre;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
