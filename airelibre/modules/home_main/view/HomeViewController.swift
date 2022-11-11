@@ -36,13 +36,14 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         tablasensor.register(UINib (nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "celda")
         manager.delegate = self
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
         tablasensor.delegate = self
         tablasensor.dataSource = self
-
+        
         createMap()
         callService()
         configureUI()
@@ -50,14 +51,14 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
         mapView.settings.myLocationButton = true
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
-
+        
         mapView.padding = UIEdgeInsets(top: 0, left: 0, bottom: 650, right: 10)
         
-
-
-
-
-
+        
+        
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,10 +67,15 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
         themeApp()
         showSensorFavorite = true
     }
-
-    @IBAction func opentablesensor(_ sender: Any) {
-        self.vistatabasensor.isHidden = false
-
+    
+    @IBAction func opentablesensor(_ sender: Any?) {
+        if self.vistatabasensor?.isHidden == true {
+            slideDownInfo(self.vistatabasensor)
+            self.vistatabasensor.isHidden = true
+        } else {
+            slideUpInfo(self.vistatabasensor)
+            self.vistatabasensor.isHidden = false
+        }
     }
     @IBOutlet weak var vistatabasensor: UIView!
     
@@ -84,12 +90,16 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
     }
     
     @IBAction func clickInfoAQI(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let myAlert = storyboard.instantiateViewController(withIdentifier: "dialogAQI")
-                myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-                myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-                self.present(myAlert, animated: true, completion: nil)
+        showInfoAQI()
         
+    }
+    
+    func showInfoAQI() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let myAlert = storyboard.instantiateViewController(withIdentifier: "dialogAQI")
+        myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        self.present(myAlert, animated: true, completion: nil)
     }
     
     
@@ -109,7 +119,7 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
         }
         setFloatingButton()
     }
-
+    
     func setFloatingButton() {
         let image = UIImage(systemName: "wifi.exclamationmark")
         btnCallService.sizeToFit()
@@ -118,9 +128,9 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
         btnCallService.setImageTintColor(.white, for: .normal)
         btnCallService.backgroundColor = UIColor.init("047745")
         btnCallService.addTarget(self, action: #selector(tap), for: .touchUpInside)
-            view.addSubview(btnCallService)
-            view.addConstraint(NSLayoutConstraint(item: btnCallService, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: -94))
-            view.addConstraint(NSLayoutConstraint(item: btnCallService, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: -32))
+        view.addSubview(btnCallService)
+        view.addConstraint(NSLayoutConstraint(item: btnCallService, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: -94))
+        view.addConstraint(NSLayoutConstraint(item: btnCallService, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: -32))
         self.btnCallService.isHidden = true
     }
     
@@ -143,11 +153,11 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
             if self.traitCollection.userInterfaceStyle == .dark {
                 do {
                     if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
-                      mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+                        mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
                     }
-                  } catch {
+                } catch {
                     NSLog("One or more of the map styles failed to load. \(error)")
-                  }
+                }
             } else {
                 mapView.mapStyle = nil
             }
@@ -155,11 +165,11 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
             if(theme == "Dark"){
                 do {
                     if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
-                      mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+                        mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
                     }
-                  } catch {
+                } catch {
                     NSLog("One or more of the map styles failed to load. \(error)")
-                  }
+                }
             }else{
                 mapView.mapStyle = nil
             }
@@ -200,11 +210,11 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let markerObj = sensorList.filter {$0.description.contains(marker.title!)}
-         if(marker != nil){
-             mapView.selectedMarker = marker
-             onClickInfoSensor(sensor: markerObj[0])
-         }
-            
+        if(marker != nil){
+            mapView.selectedMarker = marker
+            onClickInfoSensor(sensor: markerObj[0])
+        }
+        
         return true
     }
     
@@ -246,27 +256,37 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
         image.draw(in: CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(image.size.width+10), height: CGFloat(image.size.height+10)))
         var ejeX = 23
         switch(String(index).count){
-            case 2: ejeX = 20
-            case 3: ejeX = 16
-            default: break
+        case 2: ejeX = 20
+        case 3: ejeX = 16
+        default: break
         }
         let rect = CGRect(x: CGFloat(ejeX), y: CGFloat(7), width: CGFloat(image.size.width), height: CGFloat(image.size.height))
-
+        
         attrStr.draw(in: rect)
-
+        
         let markerImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return markerImage
     }
     
-    private func slideUpInfo(){
+    private func slideUpInfo(_ viewToAnimate: UIView?){
         UIView.animate(
             withDuration: 0.5,
             delay: 0.0,
             options: .curveLinear,
             animations: {
-                self.viewInfoSensor?.frame.origin.y = -100
-        })
+                viewToAnimate?.frame.origin.y = -100
+            })
+    }
+    
+    private func slideDownInfo(_ viewToAnimate: UIView?){
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0.0,
+            options: .curveLinear,
+            animations: {
+                viewToAnimate?.frame.origin.y = 100
+            })
     }
     
     private func onClickInfoSensor(sensor:SensorResponse){
@@ -277,7 +297,7 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
         tvInfoScale.text = "\(sensor.quality.index)"
         tvInfoEmoji.text = self.emojiScale(index: sensor.quality.index)
         self.viewInfoSensor?.isHidden = false
-        if(animationON){slideUpInfo()}else{
+        if(animationON){slideUpInfo(self.viewInfoSensor)}else{
             self.viewInfoSensor?.isHidden = false
         }
         self.btnInfoAQI.titleLabel?.text = ""
@@ -296,20 +316,38 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
     }
 }
 extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
+    // Llamado por UITableView cuando necesita una celda (cell, UITableViewCell) para mostrar el contenido en una fila (row) de una sección (section).
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let celda = tablasensor.dequeueReusableCell(withIdentifier: "celda", for: indexPath) as! TableViewCell
         celda.estadoaqi.text = String(datossensor[indexPath.row].quality.index)
         celda.descripsion.text = datossensor[indexPath.row].description
         celda.estado.text = self.emojiScale(index: datossensor[indexPath.row].quality.index )
-
-
-
+        // add image btnVerMas
+        let icon = UIImage(systemName: "mappin")
+        celda.btnVerMas.setImage(icon, for: .normal)
+        celda.btnVerMas.imageView?.contentMode = .scaleAspectFit
+        celda.btnVerMas.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)
+        // add function onClick btnVermas
+        celda.btnVerMas.addTarget(self, action: #selector(connected(sender:)), for: .touchUpInside)
+        celda.btnVerMas.tag = indexPath.row
+        // add function onClick btnAQI
+        celda.btnAQI.addTarget(self, action: #selector(pressAQI(sender:)), for: .touchUpInside)
         
+
         return celda
     }
     
+    @objc func connected(sender: UIButton){
+        self.opentablesensor(nil)
+        self.onClickInfoSensor(sensor: datossensor[sender.tag])
+    }
+    
+    @objc func pressAQI(sender: UIButton){
+        self.showInfoAQI()
+    }
+    //Llamado por UITableView cuando necesita saber cuántas filas (rows) tiene una sección (section)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sensorList.count
-    
-}
+        
+    }
 }

@@ -14,6 +14,8 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var estado: UILabel!
     @IBOutlet weak var vermas: UIStackView!
     
+    @IBOutlet weak var btnAQI: UIButton!
+    @IBOutlet weak var btnVerMas: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,4 +27,6 @@ class TableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func btnPressMarker(_ sender: Any) {
+    }
 }
