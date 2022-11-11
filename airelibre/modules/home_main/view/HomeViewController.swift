@@ -8,8 +8,10 @@
 import UIKit
 import GoogleMaps
 import MaterialComponents.MaterialButtons
+import FloatingPanel
 
-class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
+class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,FloatingPanelControllerDelegate {
+    
     var datossensor :[SensorResponse] = []
     @IBOutlet weak var tablasensor: UITableView!
     @IBOutlet weak var btnInfoAQI: UIButton!
@@ -37,12 +39,12 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tablasensor.register(UINib (nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "celda")
+        //tablasensor.register(UINib (nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "celda")
         manager.delegate = self
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
-        tablasensor.delegate = self
-        tablasensor.dataSource = self
+        //tablasensor.delegate = self
+        //tablasensor.dataSource = self
         
         createMap()
         callService()
@@ -54,7 +56,20 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
         
         mapView.padding = UIEdgeInsets(top: 0, left: 0, bottom: 650, right: 10)
         
+        let fpc = FloatingPanelController(delegate: self)
+        fpc.layout = MyFloatingPanelLayout()
+        guard let contentVC = storyboard?.instantiateViewController(identifier: "fpc_content") as? ContentViewController else{
+            return
+        }
+        fpc.set(contentViewController: contentVC)
+        fpc.addPanel(toParent: self)
         
+        let appearance = SurfaceAppearance()
+        let shadow = SurfaceAppearance.Shadow()
+        shadow.color = UIColor.clear
+        appearance.shadows = [shadow]
+        appearance.backgroundColor = .clear
+        fpc.surfaceView.appearance = appearance
         
         
         
@@ -203,7 +218,7 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
             }
             self.datossensor = list
             DispatchQueue.main.async {
-                self.tablasensor.reloadData()
+                //self.tablasensor.reloadData()
             }
         }
     }
@@ -350,4 +365,13 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         return sensorList.count
         
     }
+}
+class MyFloatingPanelLayout: FloatingPanelLayout {
+    let position: FloatingPanelPosition = .bottom
+    let initialState: FloatingPanelState = .tip
+    let anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] = [
+        .full: FloatingPanelLayoutAnchor(absoluteInset: 16.0, edge: .top, referenceGuide: .safeArea),
+        .half: FloatingPanelLayoutAnchor(fractionalInset: 0.5, edge: .bottom, referenceGuide: .safeArea),
+        .tip: FloatingPanelLayoutAnchor(absoluteInset: 44.0, edge: .bottom, referenceGuide: .safeArea),
+    ]
 }
